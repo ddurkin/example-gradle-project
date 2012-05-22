@@ -6,9 +6,6 @@ apply plugin: "idea"
 
 description = "Example Java/Groovy Project with IDE integration"
 
-// can set source compatibility
-sourceCompatibility = 1.5
-
 // specify repos, order matters
 repositories {
     mavenCentral()
