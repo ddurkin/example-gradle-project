@@ -1,0 +1,47 @@
+// see docs at http://www.gradle.org/documentation
+// groovy extends java so you don't need to explicitly apply the java plugin
+apply plugin: "groovy"
+apply plugin: "eclipse"
+apply plugin: "idea"
+
+description = "Example Java/Groovy Project with IDE integration"
+
+// can set source compatibility
+sourceCompatibility = 1.5
+
+// specify repos, order matters
+repositories {
+    mavenCentral()
+}
+
+// Add all artifact dependencies here
+// NOTE: There are different configurations that you can associate an artifact with.
+//       See printConfigurations task to see the one's available in this build
+dependencies {
+    groovy "org.codehaus.groovy:groovy-all:1.8.6"
+    testCompile "org.spockframework:spock-core:0.6-groovy-1.8"
+}
+
+// wrapper allows running without gradle being installed
+// ./gradlew [task]
+task wrapper(type: Wrapper) {
+        gradleVersion = '1.0-rc-3'
+}
+
+//*********************************************************
+// Below:
+// Example tasks that may be useful
+//********************************************************
+
+// initialize a project with the standard layout taking into account plugins
+task createDirs << {
+    sourceSets*.allSource.srcDirs*.each { it.mkdirs() }
+    sourceSets*.resources.srcDirs*.each { it.mkdirs() }
+}
+
+// example task that prints configurations in this project
+task "printConfigurations" << {
+    for(configuration in configurations){
+        println( configuration.name )
+    }
+}
