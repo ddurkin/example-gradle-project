@@ -1,6 +1,11 @@
+//*********************************************************
 // see docs at http://www.gradle.org/documentation
-// groovy extends java so you don't need to explicitly apply the java plugin
-apply plugin: "groovy"
+// 
+// ./gradlew tasks  // to list tasks, add --all for longer list
+// ./gradlew eclipes  // generates eclipse project files
+// ./gradlew idea     // generate intellij files
+//*********************************************************
+apply plugin: "groovy" // groovy extends java so no need to explicitly apply java plugin
 apply plugin: "eclipse"
 apply plugin: "idea"
 
@@ -16,13 +21,13 @@ repositories {
 //       See printConfigurations task to see the one's available in this build
 dependencies {
     groovy "org.codehaus.groovy:groovy-all:1.8.6"
-    testCompile "org.spockframework:spock-core:0.6-groovy-1.8"
+    groovy "org.spockframework:spock-core:0.6-groovy-1.8"
 }
 
 // wrapper allows running without gradle being installed
 // ./gradlew [task]
 task wrapper(type: Wrapper) {
-        gradleVersion = '1.0-rc-3'
+        gradleVersion = '1.1'
 }
 
 //*********************************************************
